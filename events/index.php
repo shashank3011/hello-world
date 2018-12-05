@@ -3,7 +3,11 @@
 
 <head>
   <title>Events</title>
+<<<<<<< HEAD
   <base href="../" />
+=======
+  <base href="/ailab/" />
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
   <link rel="shortcut icon" href="style/icon1.png" />
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />

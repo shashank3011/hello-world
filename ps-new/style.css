@@ -199,6 +199,7 @@ thead tr,tbody tr {
 }
 .home-button {
 	color: white;
+<<<<<<< HEAD
 	background-color:#595959;
 }
 .home-button:hover {
@@ -214,6 +215,22 @@ thead tr,tbody tr {
 #print-button {
 	background-color:green;
 	color:white;
+=======
+}
+.home-button:hover {
+	background-color : grey;
+	color: black;
+}
+#cancel-button {
+background-color:green;
+color:white;
+width: 120px;
+}
+
+#print-button {
+background-color:green;
+color:white;
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 }
 
 #cancel-button:hover, #print-button:hover {

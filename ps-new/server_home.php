@@ -110,10 +110,17 @@ mysqli_query($conn, "insert into `users` (`username`, `stream`, `quota`)  Select
 	You can print in this page <br />
 
 	<?php $ip = exec("ifconfig wlp6s0 | grep \"inet \" | awk -F'[: ]+' '{ print $4 }'");
+<<<<<<< HEAD
 	echo $ip."<br>";
 
 	$server_ip = $_SERVER['REMOTE_ADDR'];
 	echo $server_ip;
+=======
+	//echo $ip."<br>";
+
+	$server_ip = $_SERVER['REMOTE_ADDR'];
+	//echo $server_ip;
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 
 	?>
 	<!--<form name="frm" action="a3 - Copy.php" method="post" enctype="multipart/form-data"> 

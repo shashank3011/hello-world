@@ -66,8 +66,13 @@
    <h2> Welcome <?php echo $_SESSION['username'] ?>!</h2>
 
 	<div class="logout" style="float:right"><a href="ps-new/logout.php">Logout</a></div>
+<<<<<<< HEAD
 	<a href="ps-new/home.php" class="home-button ">&laquo; Home</a>
 	<a href="ps-new/usr_uploads.php" class="uploads-button">View Uploads</a>
+=======
+	<a href="ps-new/home.php" class="home-button " style="background-color: grey;">&laquo; Home</a>
+	<a href="ps-new/usr_uploads.php" class="uploads-button" style="background-color: lightblue; color: white;">View Uploads</a>
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 	<a href="ps-new/usr_history.php" class="history-button ">View History</a><br />
 	<br />
 	Upload History :

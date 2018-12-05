@@ -131,3 +131,8 @@ if (!empty($_SESSION[$key])) {
 else {
     echo 100;
 }
+<<<<<<< HEAD
+=======
+?>
+</html>
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f

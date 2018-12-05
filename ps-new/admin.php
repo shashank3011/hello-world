@@ -63,7 +63,11 @@
 	<h2> Welcome Admin! </h2>
 	 <div class="admin-box"> 
 		<div class="logout" style="float:right"><a href="ps-new/logout.php">logout</a></div> <br>
+<<<<<<< HEAD
 		<a href="ps-new/admin.php" class="home-button "style="">Home</a>
+=======
+		<a href="ps-new/admin.php" class="home-button "style="background-color: grey;">Home</a>
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 		<a href="ps-new/change_quota.php" class="change-quota">Change Quota</a>
 		<!--<div class="change-quota"><a href="ps-new/change_quota.php">Change Quota</a></div> <br>-->
 		<a href="ps-new/history.php" class="history-button" >View History</a>
@@ -103,6 +107,7 @@
 
 		<br>
 
+<<<<<<< HEAD
 		
 		<?php
 
@@ -226,6 +231,8 @@
 		  
 		?>
 
+=======
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 		<!--History:
 		<table>
 		<tr>
@@ -237,7 +244,20 @@
 		</tr>
 		</table>-->
 	 </div>
+<<<<<<< HEAD
 
+=======
+<!--<form action="queue.php" method="post">
+
+Select Jobs to print.<br />
+<?php while($row = mysqli_fetch_assoc($result)) : ?>
+	<td><input type="checkbox" name="formDoor[]" value="<?php echo $row['Job_ID']; ?>" /><?php echo $row['User_ID']."    "; echo $row['File_Name']."   "; echo $row['Time']."   "; ?><br />
+<?php endwhile ?>
+
+<input type="submit" name="formSubmit" value="Submit" />
+
+</form>	--> 
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 
 </div><!-- content ends here -->
     </div><!-- site_content ends here -->
@@ -253,3 +273,129 @@
 </body>
 </html>
 
+<<<<<<< HEAD
+=======
+<?php
+
+//if ($_POST['formSubmit'] == 'Print Job(s)') {
+if (isset($_POST['printButton'])) {
+  $aDoor = $_POST['formDoor'];
+  if(empty($aDoor)) 
+  {
+    echo("You didn't select any jobs to print.");
+  } 
+  else 
+  {
+    $N = count($aDoor);
+
+    echo("You selected $N jobs(s) to print : "."<br>");
+    for($i=0; $i < $N; $i++)
+    {	
+	#----UPDATE queue SET `Status`="not-printed";-------	
+	#mysqli_query($db, "UPDATE users SET `nop`= 2 WHERE `username` = 'lavanya'");
+	echo $i."dfghjkl;fghjkl;lkjh'<br>";
+	echo $aDoor."<br>";
+	$job_id = $aDoor[$i];
+	echo "yuhoooooohello";
+        echo($job_id  . " ");
+      	$result2=mysqli_query($conn,"SELECT * FROM queue WHERE `Job_ID`=$job_id ");
+	$row2 = $result2->fetch_assoc();
+	//echo $row2['User_name'];
+	$user_id = $row2['User_name'];
+	$file_path = $row2['File_Path'];
+	$pages = $row2['Pages'];
+	echo $file_path."<br>";
+	echo $user_id."<br>";
+	echo $pages;
+	echo exec("lp $file_path");
+	echo "hiiiiii";
+	#echo date("d/m/Y") ."  ".date("H:i:s");
+	
+	$time = date("d-m-Y h:i:sa");
+	
+	echo $time;
+	mysqli_query($conn, "UPDATE queue SET `Status`=\"printed\" WHERE `Job_ID` = $job_id");
+	mysqli_query($conn, "UPDATE queue SET `Printed_Time` = '$time' WHERE `Job_ID` = $job_id");
+	$result_dummy =mysqli_query($conn,"SELECT * FROM queue WHERE `Job_ID` = $job_id");
+	$row_dummy = $result_dummy->fetch_assoc();
+	echo "<br> printed time is..".$row_dummy['Printed_Time']."<br>";
+
+	#-------UPDATING THE NO. OF PRINTS LEFT--------------
+	$result3 = mysqli_query($conn,"SELECT `quota` FROM users WHERE `username`='$user_id' ");
+	$row3 = $result3->fetch_assoc();
+	//echo $row3['quota'];
+	$nop = $row3['quota']-$pages;
+	//echo $nop;
+	mysqli_query($conn, "UPDATE users SET `quota`= $nop WHERE `username` = '$user_id' ");
+	
+    }
+
+	echo "<meta http-equiv='refresh' content='0'>";
+	//header("location: admin.php");
+  }
+//} else if ($_POST['formSubmit'] == 'Cancel Job(s)') {
+
+}else if (isset($_POST['cancelButton'])) {
+    echo "Cancelllll";
+    $aDoor = $_POST['formDoor'];
+  if(empty($aDoor)) 
+  {
+    echo("You didn't select any jobs to cancel.");
+  } 
+  else 
+  {
+    $N = count($aDoor);
+
+    echo("You selected $N jobs(s) to cancel : "."<br>");
+    for($i=0; $i < $N; $i++)
+    {	
+	#----UPDATE queue SET `Status`="not-printed";-------	
+	#mysqli_query($db, "UPDATE users SET `nop`= 2 WHERE `username` = 'lavanya'");
+	echo $i."dfghjkl;fghjkl;lkjh'<br>";
+	echo $aDoor."<br>";
+	$job_id = $aDoor[$i];
+	echo "yuhoooooohello";
+        echo($job_id  . " ");
+      	$result2=mysqli_query($conn,"SELECT * FROM queue WHERE `Job_ID`=$job_id ");
+	$row2 = $result2->fetch_assoc();
+	//echo $row2['User_name'];
+	$user_id = $row2['User_name'];
+	$file_path = $row2['File_Path'];
+	$pages = $row2['Pages'];
+	echo $file_path."<br>";
+	echo $user_id."<br>";
+	echo $pages;
+	//echo exec("lp $file_path");
+	echo "hiiiiii";
+	#echo date("d/m/Y") ."  ".date("H:i:s");
+	
+	//$time = date("d-m-Y h:i:sa");
+	
+	//echo $time;
+	mysqli_query($conn, "UPDATE queue SET `Status`=\"cancelled\" WHERE `Job_ID` = $job_id");
+	/*mysqli_query($conn, "UPDATE queue SET `Printed_Time` = '$time' WHERE `Job_ID` = $job_id");
+	$result_dummy =mysqli_query($conn,"SELECT * FROM queue WHERE `Job_ID` = $job_id");
+	$row_dummy = $result_dummy->fetch_assoc();
+	echo "<br> printed time is..".$row_dummy['Printed_Time']."<br>";
+
+	/*-------UPDATING THE NO. OF PRINTS LEFT--------------
+	$result3 = mysqli_query($conn,"SELECT `quota` FROM users WHERE `username`='$user_id' ");
+	$row3 = $result3->fetch_assoc();
+	//echo $row3['quota'];
+	$nop = $row3['quota']-$pages;
+	//echo $nop;
+	mysqli_query($conn, "UPDATE users SET `quota`= $nop WHERE `username` = '$user_id' ");*/
+	
+    }
+	
+	echo "<meta http-equiv='refresh' content='0'>";
+	//header("location: admin.php");
+  }
+} else {
+    //invalid action!
+}
+
+  
+?>
+
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f

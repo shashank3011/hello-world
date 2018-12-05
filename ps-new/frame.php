@@ -1,58 +1,5 @@
 <!DOCTYPE html>
 
-<?php
-	// STARTING SESSION
-	session_start();
-	if ($_SESSION['logged_in'] == TRUE) {
-		header("location: home.php");
-	}
-	
-	// SETTING THINGS
-	$error = '';
-	include("config.php");
-
-	// AFTER GETTING USERNAME AND PASSWORD
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$username = strtolower($_POST["username"]);
-		$inp_pass = $_POST["password"];
-
-		// FOR ADMIN
-		if ($username == "admin") {
-			$result = mysqli_query($conn, "SELECT value FROM utility WHERE name=\"admin-password\"");
-			$row = 	$result->fetch_assoc();
-			$admin_pass = $row['value'];
-
-			if ($inp_pass == $admin_pass) {
-				echo $_SESSION['logged_in'] = TRUE;
-				echo $_SESSION['username'] = $username;
-				header("location: admin.php");
-			} else {
-				$error = "Invalid password";
-			}
-		// FOR USER				
-		} else {
-
-			$encrypted_pass = exec("cat /home/printmaster/ypcat_passwd_20181201.txt | grep $username | awk -F: '{printf $2}'");
-			$key = $inp_pass;
-			$salt = $encrypted_pass;
-			$inp_encrypted_pass = crypt($key, $salt);
-
-			if ($inp_encrypted_pass == $encrypted_pass) {
-				// TRUE
-				$_SESSION['logged_in'] = TRUE;
-				$_SESSION['username'] = $username;
-				header("location: home.php");
-			} else {
-				// FALSE
-				$error = "Invalid Username or Password";		
-			}
-			
-
-		}	
-	}
-	
-?>
-
 <html>
 
 <title>Login</title>
@@ -74,11 +21,7 @@
      <div id="header">
     <!------------------------------------heading----------------------------------------->
 	<?php
-<<<<<<< HEAD
-		$include_path = "/var/www/html/ailabb";
-=======
 		$include_path = "/var/www/html/ailab";
->>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 		$use_page="TRUE";
 		include("$include_path/components/heading.php");
 	?>
@@ -86,11 +29,8 @@
 
    <!------------------------------------navigation-bar----------------------------------------->
 	<?php
-<<<<<<< HEAD
-=======
 		$include_path = "/var/www/html/ailab";
 		$use_page="TRUE";
->>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 		include("$include_path/components/nav-bar.php");
 	?>
    <!---------------------------------navigation-bar------------------------------------->
@@ -99,38 +39,23 @@
    <div id="site_content">
        <!------------------------------------sidebar----------------------------------------->
 	<?php
-<<<<<<< HEAD
-=======
 		$include_path = "/var/www/html/ailab";
 		$use_page="TRUE";
->>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 		include("$include_path/components/sidebar.php");
 	?>
    	<!---------------------------------sidebar------------------------------------->
 
-      <div id="content">
-		<h2> Login Here </h2>
-		 <form action="ps-new/login.php" method="post">
-			<div class="login-box">
-				<label><b> Username </b></label> <br>
-				<input type="text" placeholder="Enter username" name="username" required> <br><br>
 
-				<label><b> Password </b></label> <br>
-				<input type="password" placeholder="Enter password" name="password" required> <br> <br>
+<!--       SITE CONTENT BEGIN HERE   -->
 
-				<button type="submit" id ="login-box-button">Submit</button>
-				<div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-			</div>
-		 </form>
-	</div><!-- content ends here -->
-    </div><!-- site_content ends here -->
+
+
+<!--       SITE CONTENT ENDS HERE    -->
+
     <!------------------------------------footer----------------------------------------->
 	<?php
-<<<<<<< HEAD
-=======
 		$include_path = "/var/www/html/ailab";
 		$use_page="TRUE";
->>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 		include("$include_path/components/footer.php");
 	?>
     <!---------------------------------footer------------------------------------->

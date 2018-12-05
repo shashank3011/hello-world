@@ -62,10 +62,17 @@
       <div id="content">
 	<h2> Welcome Admin! </h2>
 		<div class="logout" style="float:right"><a href="ps-new/logout.php">logout</a></div> <br>
+<<<<<<< HEAD
 		<a href="ps-new/admin.php" class="home-button "style="">&laquo; Home</a>
 		<a href="ps-new/change_quota.php" class="change-quota">Change Quota</a>
 		<!--<div class="change-quota"><a href="ps-new/change_quota.php">Change Quota</a></div> <br>-->
 		<a href="ps-new/history.php" class="history-button" >View History</a>
+=======
+		<a href="ps-new/admin.php" class="home-button "style="background-color: grey;">&laquo; Home</a>
+		<a href="ps-new/change_quota.php" class="change-quota">Change Quota</a>
+		<!--<div class="change-quota"><a href="ps-new/change_quota.php">Change Quota</a></div> <br>-->
+		<a href="ps-new/history.php" class="history-button" style="background-color: lightblue; color: white;">View History</a>
+>>>>>>> bb7fc97e1fd2fc89c3a5e46b5784e85ab6fbce6f
 
 		History:
 		<table>
